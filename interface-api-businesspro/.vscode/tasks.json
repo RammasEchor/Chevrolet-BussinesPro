@@ -21,7 +21,10 @@
                 "publish",
                 "${workspaceFolder}/interface-api-businesspro.sln",
                 "/property:GenerateFullPaths=true",
-                "/consoleloggerparameters:NoSummary"
+                "/consoleloggerparameters:NoSummary",
+                "/property:PublishSingleFile=true",
+                "--self-contained", "true",
+                "--os", "win"
             ],
             "problemMatcher": "$msCompile"
         },

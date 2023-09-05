@@ -1,15 +1,15 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
   <ItemGroup>
-    <ProjectReference Include="..\api-businesspro\api-businesspro.csproj" />
+    <ProjectReference Include="..\models-api-bussinesspro\models-api-bussinesspro.csproj" />
   </ItemGroup>
-
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net7.0</TargetFramework>
     <RootNamespace>interface_api_businesspro</RootNamespace>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <!-- Added by me -->
+    <!-- End of Added by me -->
   </PropertyGroup>
 
 </Project>

@@ -5,6 +5,8 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <RootNamespace>api_businesspro</RootNamespace>
+    <!-- Added by me -->
+    <!-- End of added by me -->
   </PropertyGroup>
 
 </Project>
