@@ -9,16 +9,11 @@
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
-            "program": "${workspaceFolder}/bin/Debug/net7.0/interface-api-businesspro.dll",
-            "args": [
-                "EjemplosJSON/Empresa/EmpresaCrear.txt"
-            ],
+            "program": "${workspaceFolder}/bin/Debug/net7.0/code-generator.dll",
+            "args": [],
             "cwd": "${workspaceFolder}",
             "console": "internalConsole",
-            "stopAtEntry": false,
-            "env": {
-                "BUSSINES_PRO_BASE_URL": "http://45.189.154.9:2000/"
-            }
+            "stopAtEntry": false
         },
         {
             "name": ".NET Core Attach",
