@@ -17,19 +17,36 @@ public static class RequestFactory
             throw new Exception("El archivo no existe/No puede ser encontrado.");
 
         StreamReader sr = new(path);
-        var typename = GetTypeName(sr);
-        var action = GetAction(sr);
-        var id = GetId(action, sr);
-        var registroJSON = GetJSON(action, sr);
-        Registro registro = CreateClient(typename, id, registroJSON);
+        string typename = GetTypeName(sr);
+        string action = GetAction(sr);
+        int id = GetId(action, sr);
+
+        int parentId = -1;
+        if (typename == "AccionesCampoDetalle" | typename == "OrdenDetalle")
+            parentId = GetId(action, sr);
+
+        string registroJSON = GetJSON(action, sr);
+        Registro registro = CreateClient(typename, id, parentId, registroJSON);
         return (registro, action);
     }
 
-    private static Registro CreateClient(string typename, int id, string registroJSON)
+    private static Registro CreateClient(string typename, int id, int parentId, string registroJSON)
     {
         return typename switch
         {
-            "Empresa" => new Empresa(registroJSON, id),
+            "AccionesCampo" => new AccionesCampo(registroJSON, id, parentId),
+            "AccionesCampoDetalle" => new AccionesCampoDetalle(registroJSON, id, parentId),
+            "Cita" => new Cita(registroJSON, id, parentId),
+            "Empresa" => new Empresa(registroJSON, id, parentId),
+            "Factura" => new Factura(registroJSON, id, parentId),
+            "Orden" => new Orden(registroJSON, id, parentId),
+            "OrdenDetalle" => new OrdenDetalle(registroJSON, id, parentId),
+            "Paquetes" => new Paquetes(registroJSON, id, parentId),
+            "Persona" => new Persona(registroJSON, id, parentId),
+            "Sucursal" => new Sucursal(registroJSON, id, parentId),
+            "Unidades" => new Unidades(registroJSON, id, parentId),
+            "UnidadesColor" => new UnidadesColor(registroJSON, id, parentId),
+            "Vehiculo" => new Vehiculo(registroJSON, id, parentId),
             _ => throw new Exception($"El tipo del registro no puede ser identificado: {typename}"),
         };
     }
