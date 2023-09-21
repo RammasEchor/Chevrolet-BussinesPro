@@ -24,7 +24,23 @@
                 "/consoleloggerparameters:NoSummary",
                 "/property:PublishSingleFile=true",
                 "--self-contained", "true",
-                "--os", "win"
+                 "--os", "win"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "publish-to-watcher-project",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "publish",
+                "${workspaceFolder}/interface-api-businesspro.sln",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary",
+                "/property:PublishSingleFile=true",
+                "--self-contained", "true",
+                 "--os", "linux",
+                 "--output", "/home/rammas/repos/Chevrolet_DMS_Watcher/test_folder/"
             ],
             "problemMatcher": "$msCompile"
         },

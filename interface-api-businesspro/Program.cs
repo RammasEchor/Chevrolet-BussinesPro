@@ -6,11 +6,21 @@ class Program
 {
     static async Task Main(string[] args)
     {
+        if (args.Length < 3)
+        {
+            Console.WriteLine("Args: path_to_file success_dir error_dir");
+            return;
+        }
+
         string output = "";
+        string output_dir = "";
+        string path_to_file = args[0];
+        string success_dir = args[1];
+        string error_dir = args[2];
+
         try
         {
-            var path = "EjemplosJSON/Empresa/EmpresaEliminar.txt";
-            (Registro registro, string action) = RequestFactory.CreateClientFromFile(ref path);
+            (Registro registro, string action) = RequestFactory.CreateClientFromFile(ref path_to_file);
             switch (action)
             {
                 case "Crear":
@@ -25,6 +35,8 @@ class Program
                     var resDel = await registro.DELETE();
                     break;
             }
+
+            output_dir = success_dir;
         }
         catch (ApiException<CrmApiError> e)
         {
@@ -33,14 +45,18 @@ class Program
             output += e.Result.Mensaje;
             output += ", ";
             output += e.Result.Trace;
+
+            output_dir = error_dir;
         }
         catch (ApiException e)
         {
             output = $"Error {e.StatusCode}: {((HttpStatusCode)e.StatusCode).ToString()}";
+            output_dir = error_dir;
         }
         catch (Exception e)
         {
             output = e.Message;
+            output_dir = error_dir;
         }
         finally
         {
@@ -49,8 +65,17 @@ class Program
                 Access = FileAccess.Write,
                 Mode = FileMode.Append
             };
-            using StreamWriter writer = new(Path.Combine("ERRORS", "errors.txt"), fileOptions);
-            writer.WriteLine($"{DateTime.Now:dd MMM yyyy HH:mm}: {output.Replace('\n', ',')}");
+            using (StreamWriter writer = new(path_to_file, fileOptions))
+            {
+                string statusSeparator = "---------------FILE STATUS:---------------";
+                string statusMessage = Environment.NewLine + statusSeparator;
+                statusMessage += Environment.NewLine + output.Replace('\n', ',');
+                Console.WriteLine($"{output.Replace('\n', ',')}");
+                writer.WriteLine($"{DateTime.Now:dd MMM yyyy HH:mm}: {statusMessage}");
+            };
+
+            string filename = Path.GetFileName(path_to_file);
+            File.Move(path_to_file, Path.Combine(output_dir, filename), true);
         }
     }
 }
