@@ -1,0 +1,2 @@
+nssm set DMS_Watcher AppEnvironmentExtra WATCHER_TOP_DIRECTORY=%WATCHER_TOP_DIRECTORY%
+PAUSE

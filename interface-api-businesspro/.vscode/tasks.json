@@ -14,7 +14,7 @@
             "problemMatcher": "$msCompile"
         },
         {
-            "label": "publish",
+            "label": "publish-win",
             "command": "dotnet",
             "type": "process",
             "args": [
@@ -29,7 +29,7 @@
             "problemMatcher": "$msCompile"
         },
         {
-            "label": "publish-to-watcher-project",
+            "label": "publish-linux",
             "command": "dotnet",
             "type": "process",
             "args": [
@@ -40,7 +40,6 @@
                 "/property:PublishSingleFile=true",
                 "--self-contained", "true",
                  "--os", "linux",
-                 "--output", "/home/rammas/repos/Chevrolet_DMS_Watcher/test_folder/"
             ],
             "problemMatcher": "$msCompile"
         },
