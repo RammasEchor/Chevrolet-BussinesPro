@@ -1,22 +1,21 @@
 echo off
 nssm stop DMS_Parser
 nssm stop DMS_Watcher
-bitsadmin /transfer DMS_Linker_Update /download /priority normal "https://github.com/RammasEchor/DMS_Chevrolet_Deployment/raw/master/DMS_Chevrolet_Deployment.zip" "C:\Program Files\DMS_Linker\DMS_Linker_Update.zip"
+bitsadmin /transfer DMS_Linker_Update /download /priority normal "https://github.com/RammasEchor/Chevrolet-BussinesPro/blob/main/interface-deployment-scripts/deployment.zip" "C:\Program Files\Interfaz_API_BusinessPro\system_update.zip"
 setlocal
 cd /d %~dp0
-Call :UnZipFile "C:\Program Files\DMS_Linker\DMS_Linker_Update" "C:\Program Files\DMS_Linker\DMS_Linker_Update.zip"
-xcopy /y "C:\Program Files\DMS_Linker\DMS_Linker_Update\DMS_Linker\DMS_Parser" "C:\Program Files\DMS_Linker\DMS_Parser"
-del "C:\Program Files\DMS_Linker\DMS_Watcher" /q
-xcopy /y "C:\Program Files\DMS_Linker\DMS_Linker_Update\DMS_Linker\DMS_Watcher" "C:\Program Files\DMS_Linker\DMS_Watcher"
-xcopy /y "C:\Program Files\DMS_Linker\DMS_Linker_Update\DMS_Linker\config_services.bat" "C:\Program Files\DMS_Linker\config_services.bat"
-xcopy /y "C:\Program Files\DMS_Linker\DMS_Linker_Update\DMS_Linker\install_services.bat" "C:\Program Files\DMS_Linker\install_services.bat"
-xcopy /y "C:\Program Files\DMS_Linker\DMS_Linker_Update\DMS_Linker\restart_services.bat" "C:\Program Files\DMS_Linker\restart_services.bat"
-xcopy /y "C:\Program Files\DMS_Linker\DMS_Linker_Update\DMS_Linker\set_env_var.bat" "C:\Program Files\DMS_Linker\set_env_var.bat"
-xcopy /y "C:\Program Files\DMS_Linker\DMS_Linker_Update\DMS_Linker\set_nssm_in_path.bat" "C:\Program Files\DMS_Linker\set_nssm_in_path.bat"
-xcopy /y "C:\Program Files\DMS_Linker\DMS_Linker_Update\DMS_Linker\stop_services.bat" "C:\Program Files\DMS_Linker\stop_services.bat"
-xcopy /y "C:\Program Files\DMS_Linker\DMS_Linker_Update\DMS_Linker\uninstall_services.bat" "C:\Program Files\DMS_Linker\uninstall_services.bat"
-del "C:\Program Files\DMS_Linker\DMS_Linker_Update.zip" /q
-del "C:\Program Files\DMS_Linker\DMS_Linker_Update" /q/s
+Call :UnZipFile "C:\Program Files\Interfaz_API_BusinessPro\temp" "C:\Program Files\Interfaz_API_BusinessPro\system_update.zip"
+xcopy /y "C:\Program Files\Interfaz_API_BusinessPro\temp\Chevrolet_DMS_Watcher.exe" "C:\Program Files\Interfaz_API_BusinessPro\Chevrolet_DMS_Watcher.exe"
+xcopy /y "C:\Program Files\Interfaz_API_BusinessPro\temp\interface-api-businesspro.exe" "C:\Program Files\Interfaz_API_BusinessPro\interface-api-businesspro.exe"
+xcopy /y "C:\Program Files\Interfaz_API_BusinessPro\temp\config_services.bat" "C:\Program Files\Interfaz_API_BusinessPro\temp\config_services.bat"
+xcopy /y "C:\Program Files\Interfaz_API_BusinessPro\temp\install_services.bat" "C:\Program Files\Interfaz_API_BusinessPro\temp\install_services.bat"
+xcopy /y "C:\Program Files\Interfaz_API_BusinessPro\temp\restart_services.bat" "C:\Program Files\Interfaz_API_BusinessPro\temp\restart_services.bat"
+xcopy /y "C:\Program Files\Interfaz_API_BusinessPro\temp\set_env_var.bat" "C:\Program Files\Interfaz_API_BusinessPro\temp\set_env_var.bat"
+xcopy /y "C:\Program Files\Interfaz_API_BusinessPro\temp\set_nssm_in_path.bat" "C:\Program Files\Interfaz_API_BusinessPro\temp\set_nssm_in_path.bat"
+xcopy /y "C:\Program Files\Interfaz_API_BusinessPro\temp\stop_services.bat" "C:\Program Files\Interfaz_API_BusinessPro\temp\stop_services.bat"
+xcopy /y "C:\Program Files\Interfaz_API_BusinessPro\temp\uninstall_services.bat" "C:\Program Files\Interfaz_API_BusinessPro\temp\uninstall_services.bat"
+del "C:\Program Files\Interfaz_API_BusinessPro\temp" /q/s
+del "C:\Program Files\Interfaz_API_BusinessPro\system_update.zip" /q
 nssm start DMS_Parser
 nssm start DMS_Watcher
 PAUSE
