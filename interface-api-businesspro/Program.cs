@@ -21,7 +21,7 @@ class Program
         try
         {
             var baseUrl = Environment.GetEnvironmentVariable("BUSSINES_PRO_BASE_URL");
-            if(string.IsNullOrEmpty(baseUrl))
+            if (string.IsNullOrEmpty(baseUrl))
                 throw new Exception("Bussines Pro Base Url is not set in the current environment.");
 
             (Registro registro, string action) = RequestFactory.CreateClientFromFile(ref path_to_file, ref baseUrl);

@@ -1,21 +1,21 @@
 echo off
 nssm stop DMS_Parser
 nssm stop DMS_Watcher
-bitsadmin /transfer DMS_Linker_Update /download /priority normal "https://github.com/RammasEchor/Chevrolet-BussinesPro/blob/main/interface-deployment-scripts/deployment.zip" "C:\Program Files\Interfaz_API_BusinessPro\system_update.zip"
+bitsadmin /transfer DMS_Linker_Update "https://github.com/RammasEchor/Chevrolet-BussinesPro/releases/latest/download/deployment.zip" "%cd%\deployment.zip"
 setlocal
 cd /d %~dp0
-Call :UnZipFile "C:\Program Files\Interfaz_API_BusinessPro\temp" "C:\Program Files\Interfaz_API_BusinessPro\system_update.zip"
-xcopy /y "C:\Program Files\Interfaz_API_BusinessPro\temp\Chevrolet_DMS_Watcher.exe" "C:\Program Files\Interfaz_API_BusinessPro\Chevrolet_DMS_Watcher.exe"
-xcopy /y "C:\Program Files\Interfaz_API_BusinessPro\temp\interface-api-businesspro.exe" "C:\Program Files\Interfaz_API_BusinessPro\interface-api-businesspro.exe"
-xcopy /y "C:\Program Files\Interfaz_API_BusinessPro\temp\config_services.bat" "C:\Program Files\Interfaz_API_BusinessPro\temp\config_services.bat"
-xcopy /y "C:\Program Files\Interfaz_API_BusinessPro\temp\install_services.bat" "C:\Program Files\Interfaz_API_BusinessPro\temp\install_services.bat"
-xcopy /y "C:\Program Files\Interfaz_API_BusinessPro\temp\restart_services.bat" "C:\Program Files\Interfaz_API_BusinessPro\temp\restart_services.bat"
-xcopy /y "C:\Program Files\Interfaz_API_BusinessPro\temp\set_env_var.bat" "C:\Program Files\Interfaz_API_BusinessPro\temp\set_env_var.bat"
-xcopy /y "C:\Program Files\Interfaz_API_BusinessPro\temp\set_nssm_in_path.bat" "C:\Program Files\Interfaz_API_BusinessPro\temp\set_nssm_in_path.bat"
-xcopy /y "C:\Program Files\Interfaz_API_BusinessPro\temp\stop_services.bat" "C:\Program Files\Interfaz_API_BusinessPro\temp\stop_services.bat"
-xcopy /y "C:\Program Files\Interfaz_API_BusinessPro\temp\uninstall_services.bat" "C:\Program Files\Interfaz_API_BusinessPro\temp\uninstall_services.bat"
-del "C:\Program Files\Interfaz_API_BusinessPro\temp" /q/s
-del "C:\Program Files\Interfaz_API_BusinessPro\system_update.zip" /q
+Call :UnZipFile "%cd%\temp" "%cd%\deployment.zip"
+xcopy /y "%cd%\temp\Chevrolet_DMS_Watcher.exe" "%cd%\Chevrolet_DMS_Watcher.exe"
+xcopy /y "%cd%\temp\interface-api-businesspro.exe" "%cd%\interface-api-businesspro.exe"
+xcopy /y "%cd%\temp\1_set_env_var.bat" "%cd%\1_set_env_var.bat"
+xcopy /y "%cd%\temp\2_set_nssm_in_path.bat" "%cd%\2_set_nssm_in_path.bat"
+xcopy /y "%cd%\temp\3_install_services.bat" "%cd%\3_install_services.bat"
+xcopy /y "%cd%\temp\4_config_services.bat" "%cd%\4_config_services.bat"
+xcopy /y "%cd%\temp\restart_services.bat" "%cd%\restart_services.bat"
+xcopy /y "%cd%\temp\stop_services.bat" "%cd%\stop_services.bat"
+xcopy /y "%cd%\temp\uninstall_services.bat" "%cd%\uninstall_services.bat"
+del "%cd%\temp" /q/s
+del "%cd%\deployment.zip" /q
 nssm start DMS_Parser
 nssm start DMS_Watcher
 PAUSE
