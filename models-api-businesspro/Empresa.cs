@@ -5,7 +5,7 @@ public class Empresa : Registro
 {
     private readonly EmpresaRequest? empresaRequest;
 
-    public Empresa(string json, int id = -1, int parentId = -1) : base(id, parentId)
+    public Empresa(string baseUrl, string json, int id = -1, int parentId = -1) : base(baseUrl, id, parentId)
     {
         empresaRequest = JsonConvert.DeserializeObject<EmpresaRequest>(json);
     }

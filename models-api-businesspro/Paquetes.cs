@@ -7,7 +7,7 @@ public class Paquetes : Registro
     private readonly ActualizarPaqueteRequest? actualizarPaqueteRequest;
 
 
-    public Paquetes(string json, int id = -1, int parentId = -1) : base(id, parentId)
+    public Paquetes(string baseUrl, string json, int id = -1, int parentId = -1) : base(baseUrl, id, parentId)
     {
         crearPaqueteRequest = JsonConvert.DeserializeObject<CrearPaqueteRequest>(json);
         actualizarPaqueteRequest = JsonConvert.DeserializeObject<ActualizarPaqueteRequest>(json);

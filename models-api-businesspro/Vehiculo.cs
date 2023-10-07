@@ -6,7 +6,7 @@ public class Vehiculo : Registro
     private readonly CrearVehiculoRequest? crearVehiculoRequest;
     private readonly ActualizarVehiculoRequest? actualizarVehiculoRequest;
 
-    public Vehiculo(string json, int id = -1, int parentId = -1) : base(id, parentId)
+    public Vehiculo(string baseUrl, string json, int id = -1, int parentId = -1) : base(baseUrl, id, parentId)
     {
         crearVehiculoRequest = JsonConvert.DeserializeObject<CrearVehiculoRequest>(json);
         actualizarVehiculoRequest = JsonConvert.DeserializeObject<ActualizarVehiculoRequest>(json);

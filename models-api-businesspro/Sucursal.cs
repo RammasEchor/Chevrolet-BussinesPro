@@ -5,7 +5,7 @@ public class Sucursal : Registro
 {
     private readonly SucursalRequest? sucursalRequest;
 
-    public Sucursal(string json, int id = -1, int parentId = -1) : base(id, parentId)
+    public Sucursal(string baseUrl, string json, int id = -1, int parentId = -1) : base(baseUrl, id, parentId)
     {
         sucursalRequest = JsonConvert.DeserializeObject<SucursalRequest>(json);
     }

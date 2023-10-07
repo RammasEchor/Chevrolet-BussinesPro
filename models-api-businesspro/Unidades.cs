@@ -5,7 +5,7 @@ public class Unidades : Registro
 {
     private readonly CrearUnidadRequest? crearUnidadRequest;
 
-    public Unidades(string json, int id = -1, int parentId = -1) : base(id, parentId)
+    public Unidades(string baseUrl, string json, int id = -1, int parentId = -1) : base(baseUrl, id, parentId)
     {
         crearUnidadRequest = JsonConvert.DeserializeObject<CrearUnidadRequest>(json);
     }

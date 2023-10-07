@@ -2,9 +2,9 @@
 using NSwag;
 using NSwag.CodeGeneration.CSharp;
 
-System.Net.WebClient wclient = new();
+HttpClient wclient = new();
 
-var document = await OpenApiDocument.FromJsonAsync(wclient.DownloadString("http://45.189.154.9:2000/swagger/v1/swagger.json"));
+var document = await OpenApiDocument.FromJsonAsync(await wclient.GetStringAsync("http://45.189.154.9:2000/swagger/v1/swagger.json"));
 
 wclient.Dispose();
 

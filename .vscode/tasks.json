@@ -7,24 +7,24 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/interface-api-businesspro.sln",
+                "${workspaceFolder}/chevrolet-businessPro.sln",
                 "/property:GenerateFullPaths=true",
-                "/consoleloggerparameters:NoSummary"
+                "/consoleloggerparameters:NoSummary;ForceNoAlign"
             ],
             "problemMatcher": "$msCompile"
         },
         {
-            "label": "publish-win",
+            "label": "publish-win32",
             "command": "dotnet",
             "type": "process",
             "args": [
                 "publish",
-                "${workspaceFolder}/interface-api-businesspro.sln",
+                "${workspaceFolder}/chevrolet-businessPro.sln",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary",
                 "/property:PublishSingleFile=true",
                 "--self-contained", "true",
-                 "--os", "win"
+                 "--runtime", "win-x86"
             ],
             "problemMatcher": "$msCompile"
         },
@@ -34,7 +34,7 @@
             "type": "process",
             "args": [
                 "publish",
-                "${workspaceFolder}/interface-api-businesspro.sln",
+                "${workspaceFolder}/chevrolet-businessPro.sln",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary",
                 "/property:PublishSingleFile=true",
@@ -51,7 +51,7 @@
                 "watch",
                 "run",
                 "--project",
-                "${workspaceFolder}/interface-api-businesspro.sln"
+                "${workspaceFolder}/chevrolet-businessPro.sln"
             ],
             "problemMatcher": "$msCompile"
         }

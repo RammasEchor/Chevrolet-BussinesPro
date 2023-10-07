@@ -6,7 +6,7 @@ public class Persona : Registro
     private readonly PersonaRequest? personaRequest;
     private readonly SucursalRequest? personaActualizarRequest;
 
-    public Persona(string json, int id = -1, int parentId = -1) : base(id, parentId)
+    public Persona(string baseUrl, string json, int id = -1, int parentId = -1) : base(baseUrl, id, parentId)
     {
         personaRequest = JsonConvert.DeserializeObject<PersonaRequest>(json);
         personaActualizarRequest = JsonConvert.DeserializeObject<SucursalRequest>(json);

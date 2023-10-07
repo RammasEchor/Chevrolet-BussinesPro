@@ -5,7 +5,7 @@ public class Factura : Registro
 {
     private readonly FacturaRequest? facturaRequest;
 
-    public Factura(string json, int id = -1, int parentId = -1) : base(id, parentId)
+    public Factura(string baseUrl, string json, int id = -1, int parentId = -1) : base(baseUrl, id, parentId)
     {
         facturaRequest = JsonConvert.DeserializeObject<FacturaRequest>(json);
     }

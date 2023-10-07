@@ -6,7 +6,7 @@ public class Cita : Registro
     private readonly CrearCitaRequest? crearCitaRequest;
     private readonly ActualizarCitaRequest? actualizarCitaRequest;
 
-    public Cita(string json, int id = -1, int parentId = -1) : base(id, parentId)
+    public Cita(string baseUrl, string json, int id = -1, int parentId = -1) : base(baseUrl, id, parentId)
     {
         crearCitaRequest = JsonConvert.DeserializeObject<CrearCitaRequest>(json);
         actualizarCitaRequest = JsonConvert.DeserializeObject<ActualizarCitaRequest>(json);

@@ -6,7 +6,7 @@ public class OrdenDetalle : Registro
     private readonly CrearOrdenDetalleRequest? crearOrdenDetalleRequest;
     private readonly ActualizarOrdenDetalleRequest? actualizarOrdenDetalleRequest;
 
-    public OrdenDetalle(string json, int id = -1, int parentId = -1) : base(id, parentId)
+    public OrdenDetalle(string baseUrl, string json, int id = -1, int parentId = -1) : base(baseUrl, id, parentId)
     {
         crearOrdenDetalleRequest = JsonConvert.DeserializeObject<CrearOrdenDetalleRequest>(json);
         actualizarOrdenDetalleRequest = JsonConvert.DeserializeObject<ActualizarOrdenDetalleRequest>(json);

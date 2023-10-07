@@ -20,7 +20,11 @@ class Program
 
         try
         {
-            (Registro registro, string action) = RequestFactory.CreateClientFromFile(ref path_to_file);
+            var baseUrl = Environment.GetEnvironmentVariable("BUSSINES_PRO_BASE_URL");
+            if(string.IsNullOrEmpty(baseUrl))
+                throw new Exception("Bussines Pro Base Url is not set in the current environment.");
+
+            (Registro registro, string action) = RequestFactory.CreateClientFromFile(ref path_to_file, ref baseUrl);
             switch (action)
             {
                 case "Crear":
@@ -36,6 +40,7 @@ class Program
                     break;
             }
 
+            output = "OK!";
             output_dir = success_dir;
         }
         catch (ApiException<CrmApiError> e)
@@ -71,7 +76,7 @@ class Program
                 string statusMessage = Environment.NewLine + statusSeparator;
                 statusMessage += Environment.NewLine + output.Replace('\n', ',');
                 Console.WriteLine($"{output.Replace('\n', ',')}");
-                writer.WriteLine($"{DateTime.Now:dd MMM yyyy HH:mm}: {statusMessage}");
+                writer.WriteLine($"{Environment.NewLine}{Environment.NewLine}{DateTime.Now:dd MMM yyyy HH:mm}: {statusMessage}");
             };
 
             string filename = Path.GetFileName(path_to_file);

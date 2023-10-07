@@ -6,7 +6,7 @@ public class AccionesCampo : Registro
     private readonly CrearAccionesCampoRequest? crearAccionesCampoRequest;
     private readonly ActualizarAccionesCampoRequest? actualizarAccionesCampoRequest;
 
-    public AccionesCampo(string json, int id = -1, int parentId = -1) : base(id, parentId)
+    public AccionesCampo(string baseUrl, string json, int id = -1, int parentId = -1) : base(baseUrl, id, parentId)
     {
         crearAccionesCampoRequest = JsonConvert.DeserializeObject<CrearAccionesCampoRequest>(json);
         actualizarAccionesCampoRequest = JsonConvert.DeserializeObject<ActualizarAccionesCampoRequest>(json);

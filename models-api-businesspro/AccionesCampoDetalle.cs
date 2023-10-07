@@ -5,7 +5,7 @@ public class AccionesCampoDetalle : Registro
 {
     private readonly AccionesCampoDetalleRequest? accionesCampoDetalleRequest;
 
-    public AccionesCampoDetalle(string json, int id = -1, int parentId = -1) : base(id, parentId)
+    public AccionesCampoDetalle(string baseUrl, string json, int id = -1, int parentId = -1) : base(baseUrl, id, parentId)
     {
         accionesCampoDetalleRequest = JsonConvert.DeserializeObject<AccionesCampoDetalleRequest>(json);
     }
