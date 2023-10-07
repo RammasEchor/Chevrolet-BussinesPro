@@ -14,7 +14,7 @@
             "problemMatcher": "$msCompile"
         },
         {
-            "label": "publish-win32",
+            "label": "publish-win32-interface",
             "command": "dotnet",
             "type": "process",
             "args": [
@@ -23,13 +23,15 @@
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary",
                 "/property:PublishSingleFile=true",
-                "--self-contained", "true",
-                 "--runtime", "win-x86"
+                "--self-contained",
+                "true",
+                "--runtime",
+                "win-x86"
             ],
-            "problemMatcher": "$msCompile"
+            "problemMatcher": "$msCompile",
         },
         {
-            "label": "publish-linux",
+            "label": "publish-linux-interface",
             "command": "dotnet",
             "type": "process",
             "args": [
@@ -38,8 +40,10 @@
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary",
                 "/property:PublishSingleFile=true",
-                "--self-contained", "true",
-                 "--os", "linux",
+                "--self-contained",
+                "true",
+                "--os",
+                "linux",
             ],
             "problemMatcher": "$msCompile"
         },
@@ -54,6 +58,18 @@
                 "${workspaceFolder}/chevrolet-businessPro.sln"
             ],
             "problemMatcher": "$msCompile"
-        }
+        },
+        {
+            "label": "deploy-win32",
+            "type": "shell",
+            "command": "./create_deployment_win.sh",
+            "options": {
+                "cwd": "${workspaceFolder}/interface-deployment-scripts/"
+            },
+            "problemMatcher": "$msCompile",
+            "dependsOn": [
+                "publish-win32-interface"
+            ]
+        },
     ]
 }
