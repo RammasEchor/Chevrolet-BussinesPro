@@ -8,8 +8,7 @@ class Program
     {
         if (args.Length < 3)
         {
-            Console.WriteLine("Args: path_to_file success_dir error_dir");
-            return;
+            throw new Exception("Args: path_to_file success_dir error_dir");
         }
 
         string output = "";
