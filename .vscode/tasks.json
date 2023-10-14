@@ -29,6 +29,11 @@
                 "win-x86"
             ],
             "problemMatcher": "$msCompile",
+            "options": {
+                "env": {
+                    "DOTNET_CLI_ENABLE_PUBLISH_RELEASE_FOR_SOLUTIONS": "true"
+                }
+            }
         },
         {
             "label": "publish-linux-interface",
@@ -45,7 +50,12 @@
                 "--os",
                 "linux",
             ],
-            "problemMatcher": "$msCompile"
+            "problemMatcher": "$msCompile",
+            "options": {
+                "env": {
+                    "DOTNET_CLI_ENABLE_PUBLISH_RELEASE_FOR_SOLUTIONS": "true"
+                }
+            }
         },
         {
             "label": "watch",

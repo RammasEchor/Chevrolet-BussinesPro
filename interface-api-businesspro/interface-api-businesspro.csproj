@@ -8,8 +8,7 @@
     <RootNamespace>interface_api_businesspro</RootNamespace>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <!-- Added by me -->
-    <!-- End of Added by me -->
+    <PublishRelease>true</PublishRelease>
   </PropertyGroup>
 
 </Project>
