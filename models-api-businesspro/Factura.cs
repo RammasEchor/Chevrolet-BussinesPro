@@ -1,6 +1,6 @@
 using Newtonsoft.Json;
 
-namespace models_api_bussinesspro;
+namespace models_api_businesspro;
 public class Factura : Registro
 {
     private readonly FacturaRequest? facturaRequest;
@@ -12,16 +12,16 @@ public class Factura : Registro
 
     override public Task<CrearResponse> POST()
     {
-        return bussinesPro.Crear6Async(facturaRequest);
+        return businessPro.Crear5Async(facturaRequest);
     }
 
     override public Task<ActualizarResponse> PUT()
     {
-        return bussinesPro.Actualizar5Async(idFactura: null, idUnidadesCatalogoColor: id.ToString(), body: facturaRequest);
+        return businessPro.Actualizar5Async(idFactura: null, idUnidadesCatalogoColor: id.ToString(), body: facturaRequest);
     }
 
     override public Task<EliminarResponse> DELETE()
     {
-        return bussinesPro.Eliminar5Async(idFactura: id);
+        return businessPro.Eliminar5Async(idFactura: id);
     }
 }

@@ -1,66 +1,89 @@
-﻿using System.Net;
-using models_api_bussinesspro;
+﻿using System.Diagnostics;
+using System.Net;
+using models_api_businesspro;
 
 namespace Chevrolet.API.Interface;
 class Program
 {
-    static async Task Main(string[] args)
+    static void Main()
     {
-        if (args.Length < 3)
+        Trace.Listeners.Add(new TextWriterTraceListener("interface-api-BusinessPro.log", "traceListener"));
+
+        Directory.CreateDirectory($"{AppConfig.TopDir}");
+        Directory.CreateDirectory($"{AppConfig.TopDir}/{AppConfig.NewRegistersDir}");
+        Directory.CreateDirectory($"{AppConfig.TopDir}/{AppConfig.ProcessedDir}");
+        Directory.CreateDirectory($"{AppConfig.TopDir}/{AppConfig.ErrorDir}");
+
+        using var watcher = new FileSystemWatcher($"{AppConfig.TopDir}/{AppConfig.NewRegistersDir}");
+        watcher.NotifyFilter = NotifyFilters.Attributes
+                             | NotifyFilters.CreationTime
+                             | NotifyFilters.DirectoryName
+                             | NotifyFilters.FileName
+                             | NotifyFilters.LastAccess
+                             | NotifyFilters.LastWrite
+                             | NotifyFilters.Security
+                             | NotifyFilters.Size;
+        watcher.InternalBufferSize = AppConfig.FileSystemBuffer;
+        watcher.Filter = AppConfig.FilePattern;
+        watcher.Created += ParseFile;
+        watcher.Renamed += ParseFile;
+        watcher.EnableRaisingEvents = true;
+
+        ParseFilesAlreadyThere($"{AppConfig.TopDir}/{AppConfig.NewRegistersDir}");
+        Trace.WriteLine("Watcher started.");
+        Trace.Flush();
+        Console.ReadLine();
+    }
+
+    private static void ParseFilesAlreadyThere(string path)
+    {
+        DirectoryInfo d = new(path);
+        foreach (var file in d.GetFiles(AppConfig.FilePattern))
         {
-            throw new Exception("Args: path_to_file success_dir error_dir");
+            FileSystemEventArgs e = new(
+                WatcherChangeTypes.Created,
+                file.DirectoryName!,
+                file.Name
+            );
+            Task.Run(() => ParseFile(null, e));
         }
+    }
 
-        string output = "";
+    static async void ParseFile(object? sender, FileSystemEventArgs eventArgs)
+    {
+        string output_message = "";
         string output_dir = "";
-        string path_to_file = args[0];
-        string success_dir = args[1];
-        string error_dir = args[2];
-
+        var path_to_file = eventArgs.FullPath;
         try
         {
-            var baseUrl = Environment.GetEnvironmentVariable("BUSSINES_PRO_BASE_URL");
-            if (string.IsNullOrEmpty(baseUrl))
-                throw new Exception("Bussines Pro Base Url is not set in the current environment.");
-
-            (Registro registro, string action) = RequestFactory.CreateClientFromFile(ref path_to_file, ref baseUrl);
+            (Registro registro, string action) = RequestFactory.CreateClientFromFile(ref path_to_file);
             switch (action)
             {
                 case "Crear":
-                    var resPost = await registro.POST();
+                    await registro.POST();
                     break;
 
                 case "Actualizar":
-                    var resPut = await registro.PUT();
+                    await registro.PUT();
                     break;
 
                 case "Eliminar":
-                    var resDel = await registro.DELETE();
+                    await registro.DELETE();
                     break;
             }
 
-            output = "OK!";
-            output_dir = success_dir;
-        }
-        catch (ApiException<CrmApiError> e)
-        {
-            output += e.Result.Codigo;
-            output += ", ";
-            output += e.Result.Mensaje;
-            output += ", ";
-            output += e.Result.Trace;
-
-            output_dir = error_dir;
+            output_message = "OK!";
+            output_dir = AppConfig.ProcessedDir;
         }
         catch (ApiException e)
         {
-            output = $"Error {e.StatusCode}: {((HttpStatusCode)e.StatusCode).ToString()}";
-            output_dir = error_dir;
+            output_message = $"API Error {e.Response}: {((HttpStatusCode)e.StatusCode).ToString()}";
+            output_dir = AppConfig.ErrorDir;
         }
         catch (Exception e)
         {
-            output = e.Message;
-            output_dir = error_dir;
+            output_message = $"Local Error: {e.Message}";
+            output_dir = AppConfig.ErrorDir;
         }
         finally
         {
@@ -73,12 +96,14 @@ class Program
             {
                 string statusSeparator = "---------------FILE STATUS:---------------";
                 string statusMessage = Environment.NewLine + statusSeparator;
-                statusMessage += Environment.NewLine + output.Replace('\n', ',');
-                Console.WriteLine($"{output.Replace('\n', ',')}");
+                statusMessage += Environment.NewLine + output_message.Replace('\n', ',');
                 writer.WriteLine($"{Environment.NewLine}{Environment.NewLine}{DateTime.Now:dd MMM yyyy HH:mm}: {statusMessage}");
             };
 
+            Trace.WriteLine($"{output_message.Replace('\n', ',')}, moving to: {output_dir}");
+            Trace.Flush();
             string filename = Path.GetFileName(path_to_file);
+            output_dir = Path.Combine(AppConfig.TopDir!, output_dir);
             File.Move(path_to_file, Path.Combine(output_dir, filename), true);
         }
     }

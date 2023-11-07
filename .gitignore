@@ -11,6 +11,9 @@
 *.sln.docstates
 *.txt
 deployment.zip
+1_set_env_variables.bat
+test_folder/
+requests.http
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs

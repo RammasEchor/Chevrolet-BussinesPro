@@ -1,1 +1,0 @@
-cp update_services.bat ~/VirtualBox\ VMs/Win10/Shared\ Folder/

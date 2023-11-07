@@ -1,25 +1,19 @@
-namespace models_api_bussinesspro
+
+namespace models_api_businesspro;
+public abstract class Registro
 {
-    public abstract class Registro
+    protected readonly BusinessPro businessPro;
+    protected readonly HttpClient httpClient;
+    protected readonly int id;
+    protected readonly int parentId;
+    public Registro(string baseUrl, int id = -1, int parentId = -1)
     {
-        protected readonly HttpClient client;
-        protected readonly BussinesPro bussinesPro;
-        protected readonly int id;
-        protected readonly int parentId;
-        public Registro(string baseUrl, int id = -1, int parentId = -1)
-        {
-            var httpClientHandler = new HttpClientHandler
-            {
-                ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => { return true; }
-            };
-            client = new(httpClientHandler);
-            bussinesPro = new(baseUrl, client);
-            Console.WriteLine(bussinesPro.BaseUrl);
-            this.id = id;
-            this.parentId = parentId;
-        }
-        public abstract Task<CrearResponse> POST();
-        public abstract Task<ActualizarResponse> PUT();
-        public abstract Task<EliminarResponse> DELETE();
+        httpClient = HttpClientSingleton.HttpClient;
+        this.id = id;
+        this.parentId = parentId;
+        businessPro = new(baseUrl, httpClient);
     }
+    public abstract Task POST();
+    public abstract Task PUT();
+    public abstract Task DELETE();
 }

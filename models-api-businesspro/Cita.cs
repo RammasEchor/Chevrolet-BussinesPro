@@ -1,6 +1,6 @@
 using Newtonsoft.Json;
 
-namespace models_api_bussinesspro;
+namespace models_api_businesspro;
 public class Cita : Registro
 {
     private readonly CrearCitaRequest? crearCitaRequest;
@@ -14,16 +14,16 @@ public class Cita : Registro
 
     override public Task<CrearResponse> POST()
     {
-        return bussinesPro.Crear3Async(crearCitaRequest);
+        return businessPro.Crear3Async(crearCitaRequest);
     }
 
     override public Task<ActualizarResponse> PUT()
     {
-        return bussinesPro.Actualizar3Async(idCita: id, actualizarCitaRequest);
+        return businessPro.Actualizar3Async(idCita: id, actualizarCitaRequest);
     }
 
     override public Task<EliminarResponse> DELETE()
     {
-        return bussinesPro.Eliminar3Async(idCita: id);
+        return businessPro.Eliminar3Async(idCita: id);
     }
 }

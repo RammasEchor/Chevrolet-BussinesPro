@@ -10,17 +10,17 @@ wclient.Dispose();
 
 var settings = new CSharpClientGeneratorSettings
 {
-    ClassName = "BussinesPro",
+    ClassName = "BusinessPro",
     CSharpGeneratorSettings =
     {
-        Namespace = "models_api_bussinesspro",
+        Namespace = "models_api_businesspro",
     }
 };
 
 var generator = new CSharpClientGenerator(document, settings);
 var code = generator.GenerateFile();
 
-using StreamWriter outputFile = new(@"../models-api-bussinesspro/gen-code.cs");
+using StreamWriter outputFile = new(@"../models-api-businesspro/gen-code.cs");
 outputFile.Write(code);
 
 

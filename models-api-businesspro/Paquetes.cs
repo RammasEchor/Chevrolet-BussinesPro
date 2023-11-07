@@ -1,6 +1,6 @@
 using Newtonsoft.Json;
 
-namespace models_api_bussinesspro;
+namespace models_api_businesspro;
 public class Paquetes : Registro
 {
     private readonly CrearPaqueteRequest? crearPaqueteRequest;
@@ -15,16 +15,16 @@ public class Paquetes : Registro
 
     override public Task<CrearResponse> POST()
     {
-        return bussinesPro.Crear9Async(crearPaqueteRequest);
+        return businessPro.Crear8Async(crearPaqueteRequest);
     }
 
     override public Task<ActualizarResponse> PUT()
     {
-        return bussinesPro.Actualizar8Async(idPaquete: id, actualizarPaqueteRequest);
+        return businessPro.Actualizar8Async(idPaquete: id, actualizarPaqueteRequest);
     }
 
     override public Task<EliminarResponse> DELETE()
     {
-        return bussinesPro.Eliminar8Async(idPaquete: id);
+        return businessPro.Eliminar8Async(idPaquete: id);
     }
 }

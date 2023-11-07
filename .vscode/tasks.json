@@ -14,7 +14,7 @@
             "problemMatcher": "$msCompile"
         },
         {
-            "label": "publish-win32-interface",
+            "label": "publish-win32",
             "command": "dotnet",
             "type": "process",
             "args": [
@@ -36,7 +36,7 @@
             }
         },
         {
-            "label": "publish-linux-interface",
+            "label": "publish-linux",
             "command": "dotnet",
             "type": "process",
             "args": [
@@ -53,7 +53,8 @@
             "problemMatcher": "$msCompile",
             "options": {
                 "env": {
-                    "DOTNET_CLI_ENABLE_PUBLISH_RELEASE_FOR_SOLUTIONS": "true"
+                    "DOTNET_CLI_ENABLE_PUBLISH_RELEASE_FOR_SOLUTIONS": "true",
+                    "CLASS_LIB_RELEASE_MODE": "true"
                 }
             }
         },
@@ -78,7 +79,7 @@
             },
             "problemMatcher": "$msCompile",
             "dependsOn": [
-                "publish-win32-interface"
+                "publish-win32"
             ]
         },
     ]

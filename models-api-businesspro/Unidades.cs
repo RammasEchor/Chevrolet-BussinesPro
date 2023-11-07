@@ -1,6 +1,6 @@
 using Newtonsoft.Json;
 
-namespace models_api_bussinesspro;
+namespace models_api_businesspro;
 public class Unidades : Registro
 {
     private readonly CrearUnidadRequest? crearUnidadRequest;
@@ -10,9 +10,14 @@ public class Unidades : Registro
         crearUnidadRequest = JsonConvert.DeserializeObject<CrearUnidadRequest>(json);
     }
 
+    public Unidades(string baseUrl, List<string> infoList, int id = -1, int parentId = -1) : base(baseUrl, id, parentId)
+    {
+        // crearUnidadRequest = JsonConvert.DeserializeObject<CrearUnidadRequest>(json);
+    }
+
     override public Task<CrearResponse> POST()
     {
-        var task = bussinesPro.Crear13Async(crearUnidadRequest);
+        var task = businessPro.Crear11Async(crearUnidadRequest);
         task.Wait(3000);
         return new Task<CrearResponse>(() =>
         {

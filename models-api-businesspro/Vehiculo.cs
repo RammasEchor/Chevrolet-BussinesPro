@@ -1,6 +1,6 @@
 using Newtonsoft.Json;
 
-namespace models_api_bussinesspro;
+namespace models_api_businesspro;
 public class Vehiculo : Registro
 {
     private readonly CrearVehiculoRequest? crearVehiculoRequest;
@@ -14,16 +14,16 @@ public class Vehiculo : Registro
 
     override public Task<CrearResponse> POST()
     {
-        return bussinesPro.Crear15Async(crearVehiculoRequest);
+        return businessPro.Crear13Async(crearVehiculoRequest);
     }
 
     override public Task<ActualizarResponse> PUT()
     {
-        return bussinesPro.Actualizar13Async(idVehiculo: id, actualizarVehiculoRequest);
+        return businessPro.Actualizar12Async(idVehiculo: id, actualizarVehiculoRequest);
     }
 
     override public Task<EliminarResponse> DELETE()
     {
-        return bussinesPro.Eliminar12Async(idVehiculo: id);
+        return businessPro.Eliminar11Async(idVehiculo: id);
     }
 }

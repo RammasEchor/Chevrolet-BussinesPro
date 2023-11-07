@@ -1,6 +1,6 @@
 using Newtonsoft.Json;
 
-namespace models_api_bussinesspro;
+namespace models_api_businesspro;
 public class Persona : Registro
 {
     private readonly PersonaRequest? personaRequest;
@@ -14,12 +14,12 @@ public class Persona : Registro
 
     override public Task<CrearResponse> POST()
     {
-        return bussinesPro.Crear11Async(personaRequest);
+        return businessPro.Crear9Async(personaRequest);
     }
 
     override public Task<ActualizarResponse> PUT()
     {
-        var task = bussinesPro.Actualizar10Async(idPersona: id, personaActualizarRequest);
+        var task = businessPro.Actualizar9Async(idPersona: id, personaActualizarRequest);
         task.Wait(3000);
         return new Task<ActualizarResponse>(() =>
         {

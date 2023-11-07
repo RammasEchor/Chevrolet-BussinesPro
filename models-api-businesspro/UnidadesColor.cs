@@ -1,6 +1,6 @@
 using Newtonsoft.Json;
 
-namespace models_api_bussinesspro;
+namespace models_api_businesspro;
 public class UnidadesColor : Registro
 {
     private readonly UnidadColorRequest? unidadColorRequest;
@@ -12,16 +12,16 @@ public class UnidadesColor : Registro
 
     override public Task<CrearResponse> POST()
     {
-        return bussinesPro.Crear14Async(unidadColorRequest);
+        return businessPro.Crear12Async(unidadColorRequest);
     }
 
     override public Task<ActualizarResponse> PUT()
     {
-        return bussinesPro.Actualizar12Async(idUnidadesCatalogoColor: id, unidadColorRequest);
+        return businessPro.Actualizar11Async(idUnidadesCatalogoColor: id, unidadColorRequest);
     }
 
     override public Task<EliminarResponse> DELETE()
     {
-        return bussinesPro.Eliminar11Async(idUnidadesCatalogoColor: id);
+        return businessPro.Eliminar10Async(idUnidadesCatalogoColor: id);
     }
 }

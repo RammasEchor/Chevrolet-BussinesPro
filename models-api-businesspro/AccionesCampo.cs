@@ -1,6 +1,6 @@
 using Newtonsoft.Json;
 
-namespace models_api_bussinesspro;
+namespace models_api_businesspro;
 public class AccionesCampo : Registro
 {
     private readonly CrearAccionesCampoRequest? crearAccionesCampoRequest;
@@ -14,16 +14,16 @@ public class AccionesCampo : Registro
 
     override public Task<CrearResponse> POST()
     {
-        return bussinesPro.CrearAsync(crearAccionesCampoRequest);
+        return businessPro.CrearAsync(crearAccionesCampoRequest);
     }
 
     override public Task<ActualizarResponse> PUT()
     {
-        return bussinesPro.ActualizarAsync(idAccionesCampo: id, actualizarAccionesCampoRequest);
+        return businessPro.ActualizarAsync(idAccionesCampo: id, actualizarAccionesCampoRequest);
     }
 
     override public Task<EliminarResponse> DELETE()
     {
-        return bussinesPro.EliminarAsync(idAccionesCampo: id);
+        return businessPro.EliminarAsync(idAccionesCampo: id);
     }
 }

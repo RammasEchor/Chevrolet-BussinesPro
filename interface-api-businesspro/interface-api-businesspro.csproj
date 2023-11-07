@@ -10,5 +10,4 @@
     <Nullable>enable</Nullable>
     <PublishRelease>true</PublishRelease>
   </PropertyGroup>
-
 </Project>

@@ -1,2 +1,0 @@
-nssm install DMS_Watcher
-PAUSE

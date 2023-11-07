@@ -1,6 +1,6 @@
 using Newtonsoft.Json;
 
-namespace models_api_bussinesspro;
+namespace models_api_businesspro;
 public class Sucursal : Registro
 {
     private readonly SucursalRequest? sucursalRequest;
@@ -12,16 +12,16 @@ public class Sucursal : Registro
 
     override public Task<CrearResponse> POST()
     {
-        return bussinesPro.Crear12Async(sucursalRequest);
+        return businessPro.Crear10Async(sucursalRequest);
     }
 
     override public Task<ActualizarResponse> PUT()
     {
-        return bussinesPro.Actualizar11Async(idSucursal: id, sucursalRequest);
+        return businessPro.Actualizar10Async(idSucursal: id, sucursalRequest);
     }
 
     override public Task<EliminarResponse> DELETE()
     {
-        return bussinesPro.Eliminar10Async(idSucursal: id);
+        return businessPro.Eliminar9Async(idSucursal: id);
     }
 }
