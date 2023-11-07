@@ -1,8 +1,9 @@
 #! /bin/bash
 rm ./deployment.zip
-cp /home/rammas/repos/Chevrolet_DMS_Watcher/bin/Debug/net7.0/win-x86/publish/Chevrolet_DMS_Watcher.exe ./
 cp /home/rammas/repos/chevrolet-businessPro/interface-api-businesspro/bin/Release/net7.0/win-x86/publish/interface-api-businesspro.exe ./
-zip -9 -y -r deployment.zip Chevrolet_DMS_Watcher.exe interface-api-businesspro.exe *.bat
-rm ./Chevrolet_DMS_Watcher.exe
+mkdir progress-scripts
+cp /home/rammas/repos/progress-scripts/progress-scripts/* ./progress-scripts
+zip -9 -y -r deployment.zip interface-api-businesspro.exe *.bat progress-scripts/*
 rm ./interface-api-businesspro.exe
+rm -r ./progress-scripts/
 cp deployment.zip ~/VirtualBox\ VMs/Win10/Shared\ Folder/
