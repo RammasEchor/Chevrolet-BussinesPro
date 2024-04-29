@@ -1,6 +1,6 @@
 using Newtonsoft.Json;
 
-namespace models_api_businesspro;
+namespace ChevroletToBusinessProInterface.Models;
 public class Factura : Registro
 {
     private readonly FacturaRequest? facturaRequest;
@@ -23,5 +23,10 @@ public class Factura : Registro
     override public Task<EliminarResponse> DELETE()
     {
         return businessPro.Eliminar5Async(idFactura: id);
+    }
+
+    public override string GetJsonString()
+    {
+        return JsonConvert.SerializeObject(this);
     }
 }

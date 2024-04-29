@@ -1,6 +1,6 @@
 using Newtonsoft.Json;
 
-namespace models_api_businesspro;
+namespace ChevroletToBusinessProInterface.Models;
 public class Cita : Registro
 {
     private readonly CrearCitaRequest? crearCitaRequest;
@@ -25,5 +25,10 @@ public class Cita : Registro
     override public Task<EliminarResponse> DELETE()
     {
         return businessPro.Eliminar3Async(idCita: id);
+    }
+
+    public override string GetJsonString()
+    {
+        return JsonConvert.SerializeObject(this);
     }
 }

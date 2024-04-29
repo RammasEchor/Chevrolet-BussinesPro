@@ -1,7 +1,7 @@
 using System.Collections.Specialized;
-using models_api_businesspro;
+using ChevroletToBusinessProInterface.Models;
 
-namespace Chevrolet.API.Interface;
+namespace ChevroletToBusinessProInterface;
 
 public static class RequestFactory
 {

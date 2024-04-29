@@ -1,5 +1,5 @@
 
-namespace models_api_businesspro;
+namespace ChevroletToBusinessProInterface.Models;
 public abstract class Registro
 {
     protected readonly BusinessPro businessPro;
@@ -16,4 +16,5 @@ public abstract class Registro
     public abstract Task POST();
     public abstract Task PUT();
     public abstract Task DELETE();
+    public abstract string GetJsonString();
 }

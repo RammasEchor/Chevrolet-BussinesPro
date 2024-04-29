@@ -1,6 +1,6 @@
 using Newtonsoft.Json;
 
-namespace models_api_businesspro;
+namespace ChevroletToBusinessProInterface.Models;
 public class AccionesCampoDetalle : Registro
 {
     private readonly AccionesCampoDetalleRequest? accionesCampoDetalleRequest;
@@ -23,5 +23,10 @@ public class AccionesCampoDetalle : Registro
     override public Task<EliminarResponse> DELETE()
     {
         return businessPro.Eliminar2Async(idAccionesCampo: parentId, idAccionesCampoDetalle: id);
+    }
+
+    public override string GetJsonString()
+    {
+        return JsonConvert.SerializeObject(this);
     }
 }

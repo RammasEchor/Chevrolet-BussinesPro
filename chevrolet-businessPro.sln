@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "code-generator", "code-gene
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "interface-api-businesspro", "interface-api-businesspro\interface-api-businesspro.csproj", "{98624964-60D0-4F3C-90B0-4DC76E9CD7DD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "models-api-businesspro", "models-api-businesspro\models-api-businesspro.csproj", "{1B05E742-FE25-44C2-9892-4E57888AF93D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "api-businesspro", "api-businesspro\api-businesspro.csproj", "{2DB1CB34-B1A5-468A-83B4-2D0836C83AFC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -26,9 +26,9 @@ Global
 		{98624964-60D0-4F3C-90B0-4DC76E9CD7DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{98624964-60D0-4F3C-90B0-4DC76E9CD7DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{98624964-60D0-4F3C-90B0-4DC76E9CD7DD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1B05E742-FE25-44C2-9892-4E57888AF93D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1B05E742-FE25-44C2-9892-4E57888AF93D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1B05E742-FE25-44C2-9892-4E57888AF93D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1B05E742-FE25-44C2-9892-4E57888AF93D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2DB1CB34-B1A5-468A-83B4-2D0836C83AFC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2DB1CB34-B1A5-468A-83B4-2D0836C83AFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2DB1CB34-B1A5-468A-83B4-2D0836C83AFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2DB1CB34-B1A5-468A-83B4-2D0836C83AFC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

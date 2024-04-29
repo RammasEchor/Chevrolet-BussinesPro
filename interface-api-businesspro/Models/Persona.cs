@@ -1,6 +1,6 @@
 using Newtonsoft.Json;
 
-namespace models_api_businesspro;
+namespace ChevroletToBusinessProInterface.Models;
 public class Persona : Registro
 {
     private readonly PersonaRequest? personaRequest;
@@ -34,5 +34,10 @@ public class Persona : Registro
     override public Task<EliminarResponse> DELETE()
     {
         throw new Exception("Persona no tiene método DELETE.");
+    }
+
+    public override string GetJsonString()
+    {
+        return JsonConvert.SerializeObject(this);
     }
 }

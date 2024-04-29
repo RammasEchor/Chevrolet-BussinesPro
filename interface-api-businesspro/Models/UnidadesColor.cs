@@ -1,6 +1,6 @@
 using Newtonsoft.Json;
 
-namespace models_api_businesspro;
+namespace ChevroletToBusinessProInterface.Models;
 public class UnidadesColor : Registro
 {
     private readonly UnidadColorRequest? unidadColorRequest;
@@ -23,5 +23,10 @@ public class UnidadesColor : Registro
     override public Task<EliminarResponse> DELETE()
     {
         return businessPro.Eliminar10Async(idUnidadesCatalogoColor: id);
+    }
+
+    public override string GetJsonString()
+    {
+        return JsonConvert.SerializeObject(this);
     }
 }

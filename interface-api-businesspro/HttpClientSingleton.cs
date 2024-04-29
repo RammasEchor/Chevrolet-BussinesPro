@@ -1,4 +1,4 @@
-namespace models_api_businesspro;
+namespace ChevroletToBusinessProInterface;
 
 public static class HttpClientSingleton
 {

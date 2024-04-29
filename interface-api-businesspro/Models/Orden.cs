@@ -1,6 +1,6 @@
 using Newtonsoft.Json;
 
-namespace models_api_businesspro;
+namespace ChevroletToBusinessProInterface.Models;
 public class Orden : Registro
 {
     private readonly CrearOrdenRequest? crearOrdenRequest;
@@ -25,5 +25,10 @@ public class Orden : Registro
     override public Task<EliminarResponse> DELETE()
     {
         return businessPro.Eliminar6Async(idServicioOrdenes: id);
+    }
+
+    public override string GetJsonString()
+    {
+        return JsonConvert.SerializeObject(this);
     }
 }

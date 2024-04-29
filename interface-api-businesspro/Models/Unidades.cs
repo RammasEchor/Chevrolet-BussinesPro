@@ -1,6 +1,6 @@
 using Newtonsoft.Json;
 
-namespace models_api_businesspro;
+namespace ChevroletToBusinessProInterface.Models;
 public class Unidades : Registro
 {
     private readonly CrearUnidadRequest? crearUnidadRequest;
@@ -38,5 +38,10 @@ public class Unidades : Registro
     override public Task<EliminarResponse> DELETE()
     {
         throw new Exception("Unidades no tiene método DELETE.");
+    }
+
+    public override string GetJsonString()
+    {
+        return JsonConvert.SerializeObject(this);
     }
 }

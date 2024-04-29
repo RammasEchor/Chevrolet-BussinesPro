@@ -1,6 +1,6 @@
 using Newtonsoft.Json;
 
-namespace models_api_businesspro;
+namespace ChevroletToBusinessProInterface.Models;
 public class Vehiculo : Registro
 {
     private readonly CrearVehiculoRequest? crearVehiculoRequest;
@@ -25,5 +25,10 @@ public class Vehiculo : Registro
     override public Task<EliminarResponse> DELETE()
     {
         return businessPro.Eliminar11Async(idVehiculo: id);
+    }
+
+    public override string GetJsonString()
+    {
+        return JsonConvert.SerializeObject(this);
     }
 }

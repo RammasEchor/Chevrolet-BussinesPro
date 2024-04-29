@@ -1,8 +1,9 @@
 ﻿using System.Diagnostics;
 using System.Net;
-using models_api_businesspro;
+using System.Text;
+using ChevroletToBusinessProInterface.Models;
 
-namespace Chevrolet.API.Interface;
+namespace ChevroletToBusinessProInterface;
 class Program
 {
     static void Main()
@@ -51,12 +52,13 @@ class Program
 
     static async void ParseFile(object? sender, FileSystemEventArgs eventArgs)
     {
-        string output_message = "";
+        StringBuilder output_message = new();
         string output_dir = "";
         var path_to_file = eventArgs.FullPath;
         try
         {
             (Registro registro, string action) = RequestFactory.CreateClientFromFile(ref path_to_file);
+            output_message.AppendLine(registro.GetJsonString());
             switch (action)
             {
                 case "Crear":
@@ -72,17 +74,17 @@ class Program
                     break;
             }
 
-            output_message = "OK!";
+            output_message.AppendLine("OK!");
             output_dir = AppConfig.ProcessedDir;
         }
         catch (ApiException e)
         {
-            output_message = $"API Error {e.Response}: {((HttpStatusCode)e.StatusCode).ToString()}";
+            output_message.AppendLine($"API Error {e.Response}: {((HttpStatusCode)e.StatusCode).ToString()}");
             output_dir = AppConfig.ErrorDir;
         }
         catch (Exception e)
         {
-            output_message = $"Local Error: {e.Message}";
+            output_message.AppendLine($"Local Error: {e.Message}");
             output_dir = AppConfig.ErrorDir;
         }
         finally
@@ -96,11 +98,11 @@ class Program
             {
                 string statusSeparator = "---------------FILE STATUS:---------------";
                 string statusMessage = Environment.NewLine + statusSeparator;
-                statusMessage += Environment.NewLine + output_message.Replace('\n', ',');
+                statusMessage += Environment.NewLine + output_message.ToString();
                 writer.WriteLine($"{Environment.NewLine}{Environment.NewLine}{DateTime.Now:dd MMM yyyy HH:mm}: {statusMessage}");
             };
 
-            Trace.WriteLine($"{output_message.Replace('\n', ',')}, moving to: {output_dir}");
+            Trace.WriteLine($"{eventArgs.Name}, moving to: {output_dir}");
             Trace.Flush();
             string filename = Path.GetFileName(path_to_file);
             output_dir = Path.Combine(AppConfig.TopDir!, output_dir);
@@ -108,7 +110,3 @@ class Program
         }
     }
 }
-
-
-
-

@@ -20,7 +20,9 @@ var settings = new CSharpClientGeneratorSettings
 var generator = new CSharpClientGenerator(document, settings);
 var code = generator.GenerateFile();
 
-using StreamWriter outputFile = new(@"../models-api-businesspro/gen-code.cs");
-outputFile.Write(code);
+using StreamWriter interfaceModels = new(@"../interface-api-businesspro/Models/gen-code.cs");
+using StreamWriter apiModels = new(@"../api-businesspro/Models/gen-code.cs");
+interfaceModels.Write(code);
+apiModels.Write(code);
 
 

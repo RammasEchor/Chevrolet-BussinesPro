@@ -1,6 +1,6 @@
 using Newtonsoft.Json;
 
-namespace models_api_businesspro;
+namespace ChevroletToBusinessProInterface.Models;
 public class Paquetes : Registro
 {
     private readonly CrearPaqueteRequest? crearPaqueteRequest;
@@ -26,5 +26,10 @@ public class Paquetes : Registro
     override public Task<EliminarResponse> DELETE()
     {
         return businessPro.Eliminar8Async(idPaquete: id);
+    }
+
+    public override string GetJsonString()
+    {
+        return JsonConvert.SerializeObject(this);
     }
 }

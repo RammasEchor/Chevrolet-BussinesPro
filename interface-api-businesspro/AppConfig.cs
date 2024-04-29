@@ -1,6 +1,6 @@
 using System.Diagnostics;
 
-namespace Chevrolet.API.Interface;
+namespace ChevroletToBusinessProInterface;
 
 public static class AppConfig
 {
