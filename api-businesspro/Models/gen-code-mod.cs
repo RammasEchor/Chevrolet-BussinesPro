@@ -6854,10 +6854,10 @@ namespace API.Models
         public int? ResponsableMtto { get; set; }
 
         [Newtonsoft.Json.JsonProperty("paquetes", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.Generic.ICollection<CitaPaqueteRequest> Paquetes { get; set; }
+        public System.Collections.Generic.ICollection<CrearPaqueteRequest> Paquetes { get; set; }
 
         [Newtonsoft.Json.JsonProperty("accionesCampo", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.Generic.ICollection<CitaAccionCampoRequest> AccionesCampo { get; set; }
+        public System.Collections.Generic.ICollection<CrearAccionesCampoRequest> AccionesCampo { get; set; }
 
     }
 

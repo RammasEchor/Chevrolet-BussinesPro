@@ -3,6 +3,7 @@ using System;
 using API.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace api_businesspro.Migrations
 {
     [DbContext(typeof(ApiContext))]
-    partial class ApiContextModelSnapshot : ModelSnapshot
+    [Migration("20240508215718_AddSucursal")]
+    partial class AddSucursal
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.4");
@@ -794,218 +797,6 @@ namespace api_businesspro.Migrations
                     b.ToTable("CrearPaqueteVehiculoResquest");
                 });
 
-            modelBuilder.Entity("API.Models.CrearUnidadRequest", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("AnModelo")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("CECapacidadPasajeros")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("CEClase")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("CEClilindros")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("CECombustible")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("CEFamilia")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("CELinea")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("CEMarca")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("CEPaisOrigen")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("CEPuertas")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("CETipoInterior")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("CETipoMotor")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("CETipoTraccion")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("CETransmision")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("ClaveVehicular")
-                        .HasColumnType("TEXT");
-
-                    b.Property<double?>("Cm3")
-                        .HasColumnType("REAL");
-
-                    b.Property<string>("CodigoModelo")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("CodigoMotor")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("CodigoPlanta")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("CodigoTransmision")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("CveCatalogo")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Descripcion")
-                        .HasColumnType("TEXT");
-
-                    b.Property<double?>("DistanciaEjes")
-                        .HasColumnType("REAL");
-
-                    b.Property<double?>("KmXLitro")
-                        .HasColumnType("REAL");
-
-                    b.Property<int?>("NumeroLlantas")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Observaciones")
-                        .HasColumnType("TEXT");
-
-                    b.Property<int?>("Potencia")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<double?>("PresoBrutoVe")
-                        .HasColumnType("REAL");
-
-                    b.Property<string>("Suspension")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("TipoDireccion")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("TipoFrenos")
-                        .HasColumnType("TEXT");
-
-                    b.Property<double?>("ToneladasCarga")
-                        .HasColumnType("REAL");
-
-                    b.Property<int?>("Torque")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int?>("VelocidadMaxima")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<double?>("VoltajeBateria")
-                        .HasColumnType("REAL");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("CrearUnidadRequest");
-                });
-
-            modelBuilder.Entity("API.Models.CrearVehiculoRequest", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("CEDistribuidorVendedor")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("CEOrigenUnidad")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("CESituacion")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("CEUbicacion")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("FechaEntrega")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("FechaVenta")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("GarantiaExtendida")
-                        .HasColumnType("TEXT");
-
-                    b.Property<int?>("IdConductor")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int?>("IdContacto")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int?>("IdEmpresa")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int?>("IdPropietario")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int?>("IdRespMtto")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int?>("IdSucursal")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int?>("IdUnidadesCatalogo")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int?>("IdUnidadesCatalogoColorExt")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("IdUnidadesCatalogoColorInt")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("IdVehiculosVINOrigen")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("NoEconomico")
-                        .HasColumnType("TEXT");
-
-                    b.Property<double?>("NoInventario")
-                        .HasColumnType("REAL");
-
-                    b.Property<string>("NoSerieAlternativo")
-                        .HasColumnType("TEXT");
-
-                    b.Property<double?>("NumeroEntrega")
-                        .HasColumnType("REAL");
-
-                    b.Property<string>("NumeroMotor")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("NumeroPlaca")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("NumeroSerie")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Observaciones")
-                        .HasColumnType("TEXT");
-
-                    b.Property<long?>("OtrasmarcasId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<double?>("UltimoKilometraje")
-                        .HasColumnType("REAL");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("OtrasmarcasId");
-
-                    b.ToTable("CrearVehiculoRequest");
-                });
-
             modelBuilder.Entity("API.Models.EmpresaRequest", b =>
                 {
                     b.Property<long>("Id")
@@ -1520,79 +1311,6 @@ namespace api_businesspro.Migrations
                     b.ToTable("SucursalRequest");
                 });
 
-            modelBuilder.Entity("API.Models.UnidadColorRequest", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("CETipoColor")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("IdUnidadesCatalogoColor")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<long>("UnidadID")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UnidadID");
-
-                    b.ToTable("UnidadColorRequest");
-                });
-
-            modelBuilder.Entity("API.Models.VehiculoOtrasMarcasRequest", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("CEOTMColorExt")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("CEOTMColorInt")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("CEOTMMarca")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("OTMCapacidad")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("OTMCilindros")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("OTMCombustible")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("OTMModelo")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("OTMNoMotor")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("OTMPuertas")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("OTMTipoAuto")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("OTMTipoMotor")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("OTMTraccion")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("OTMTransmision")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("VehiculoOtrasMarcasRequest");
-                });
-
             modelBuilder.Entity("API.Models.AccionesCampoDetalleRequest", b =>
                 {
                     b.HasOne("API.Models.CrearAccionesCampoRequest", "AccionCampo")
@@ -1688,15 +1406,6 @@ namespace api_businesspro.Migrations
                     b.Navigation("Paquete");
                 });
 
-            modelBuilder.Entity("API.Models.CrearVehiculoRequest", b =>
-                {
-                    b.HasOne("API.Models.VehiculoOtrasMarcasRequest", "Otrasmarcas")
-                        .WithMany()
-                        .HasForeignKey("OtrasmarcasId");
-
-                    b.Navigation("Otrasmarcas");
-                });
-
             modelBuilder.Entity("API.Models.PersonaCorreoRequest", b =>
                 {
                     b.HasOne("API.Models.PersonaRequest", null)
@@ -1754,17 +1463,6 @@ namespace api_businesspro.Migrations
                         .HasForeignKey("PersonaRequestId");
                 });
 
-            modelBuilder.Entity("API.Models.UnidadColorRequest", b =>
-                {
-                    b.HasOne("API.Models.CrearUnidadRequest", "Unidad")
-                        .WithMany("Colores")
-                        .HasForeignKey("UnidadID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Unidad");
-                });
-
             modelBuilder.Entity("API.Models.CrearAccionesCampoRequest", b =>
                 {
                     b.Navigation("Detalles");
@@ -1793,11 +1491,6 @@ namespace api_businesspro.Migrations
                     b.Navigation("Tots");
 
                     b.Navigation("Vehiculos");
-                });
-
-            modelBuilder.Entity("API.Models.CrearUnidadRequest", b =>
-                {
-                    b.Navigation("Colores");
                 });
 
             modelBuilder.Entity("API.Models.PersonaRequest", b =>

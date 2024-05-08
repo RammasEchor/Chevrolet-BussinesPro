@@ -21,35 +21,40 @@ namespace api_businesspro.Controllers
         }
 
         // GET: api/AccionesCampoDetalle
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<AccionesCampoDetalleRequest>>> GetAccionesCampoDetalle()
+        [HttpGet("{idAccionesCampo}/{id}")]
+        public ActionResult<AccionesCampoDetalleRequest> GetAccionesCampoDetalle(long idAccionesCampo, long id)
         {
-            return await _context.AccionesCampoDetalle.ToListAsync();
+            var accionesCampoDetalleRequest = _context.AccionesCampoDetalleRequest.Where(d => d.AccionCampoID == idAccionesCampo);
+            if (!accionesCampoDetalleRequest.Any())
+                return NotFound();
+
+            var detalle = accionesCampoDetalleRequest.ToList().Find(d => d.Id == id);
+            if (detalle == null)
+                return NotFound();
+
+            return detalle;
         }
 
         // GET: api/AccionesCampoDetalle/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<AccionesCampoDetalleRequest>> GetAccionesCampoDetalleRequest(long id)
+        [HttpGet("{idAccionesCampo}")]
+        public ActionResult<List<AccionesCampoDetalleRequest>> GetAccionesCampoDetalleRequest(long idAccionesCampo)
         {
-            var accionesCampoDetalleRequest = await _context.AccionesCampoDetalle.FindAsync(id);
+            var accionesCampoDetalleRequest = _context.AccionesCampoDetalleRequest.Where(d => d.AccionCampoID == idAccionesCampo);
 
-            if (accionesCampoDetalleRequest == null)
-            {
-                return NotFound();
-            }
-
-            return accionesCampoDetalleRequest;
+            return accionesCampoDetalleRequest.ToList();
         }
 
         // PUT: api/AccionesCampoDetalle/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutAccionesCampoDetalleRequest(long id, AccionesCampoDetalleRequest accionesCampoDetalleRequest)
+        [HttpPut("{idAccionesCampo}/{id}")]
+        public async Task<IActionResult> PutAccionesCampoDetalleRequest(long idAccionesCampo, long id, AccionesCampoDetalleRequest accionesCampoDetalleRequest)
         {
             if (id != accionesCampoDetalleRequest.Id)
-            {
-                return BadRequest();
-            }
+                return BadRequest("The url id is not equal to the object id");
+
+            var accionCampo = _context.CrearAccionesCampoRequest.Find(idAccionesCampo);
+            if (accionCampo == null)
+                return NotFound("There is no AccionesCampo object with that id.");
 
             _context.Entry(accionesCampoDetalleRequest).State = EntityState.Modified;
 
@@ -74,26 +79,33 @@ namespace api_businesspro.Controllers
 
         // POST: api/AccionesCampoDetalle
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public async Task<ActionResult<AccionesCampoDetalleRequest>> PostAccionesCampoDetalleRequest(AccionesCampoDetalleRequest accionesCampoDetalleRequest)
+        [HttpPost("{idAccionesCampo}")]
+        public async Task<ActionResult<AccionesCampoDetalleRequest>> PostAccionesCampoDetalleRequest(long idAccionesCampo, AccionesCampoDetalleRequest accionesCampoDetalleRequest)
         {
-            _context.AccionesCampoDetalle.Add(accionesCampoDetalleRequest);
+            var accionCampo = _context.CrearAccionesCampoRequest.Find(idAccionesCampo);
+            if (accionCampo == null)
+                return NotFound("There is no AccionesCampo object with that id.");
+
+            accionesCampoDetalleRequest.AccionCampoID = accionCampo.Id;
+            _context.AccionesCampoDetalleRequest.Add(accionesCampoDetalleRequest);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction(nameof(PostAccionesCampoDetalleRequest), new { id = accionesCampoDetalleRequest.Id }, accionesCampoDetalleRequest);
         }
 
         // DELETE: api/AccionesCampoDetalle/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteAccionesCampoDetalleRequest(long id)
+        [HttpDelete("{idAccionesCampo}/{id}")]
+        public async Task<IActionResult> DeleteAccionesCampoDetalleRequest(long idAccionesCampo, long id)
         {
-            var accionesCampoDetalleRequest = await _context.AccionesCampoDetalle.FindAsync(id);
-            if (accionesCampoDetalleRequest == null)
-            {
-                return NotFound();
-            }
+            var accionCampo = _context.CrearAccionesCampoRequest.Find(idAccionesCampo);
+            if (accionCampo == null)
+                return NotFound("There is no AccionesCampo object with that id.");
 
-            _context.AccionesCampoDetalle.Remove(accionesCampoDetalleRequest);
+            var accionesCampoDetalleRequest = await _context.AccionesCampoDetalleRequest.FindAsync(id);
+            if (accionesCampoDetalleRequest == null)
+                return NotFound();
+
+            _context.AccionesCampoDetalleRequest.Remove(accionesCampoDetalleRequest);
             await _context.SaveChangesAsync();
 
             return NoContent();
@@ -101,7 +113,7 @@ namespace api_businesspro.Controllers
 
         private bool AccionesCampoDetalleRequestExists(long id)
         {
-            return _context.AccionesCampoDetalle.Any(e => e.Id == id);
+            return _context.AccionesCampoDetalleRequest.Any(e => e.Id == id);
         }
     }
 }

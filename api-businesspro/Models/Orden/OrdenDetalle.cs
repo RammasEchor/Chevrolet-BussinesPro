@@ -4,16 +4,16 @@ using Swashbuckle.AspNetCore.Annotations;
 
 namespace API.Models;
 
-public partial class AccionesCampoDetalleRequest
+public partial class CrearOrdenDetalleRequest
 {
     [Key]
     [SwaggerSchema(ReadOnly = true)]
     public long Id { get; set; }
 
     [SwaggerSchema(ReadOnly = true)]
-    public long AccionCampoID { get; set; }
+    public long OrdenID { get; set; }
 
     [JsonIgnore]
     [SwaggerSchema(ReadOnly = true)]
-    public CrearAccionesCampoRequest AccionCampo { get; set; }
+    public CrearOrdenRequest Orden { get; set; }
 }

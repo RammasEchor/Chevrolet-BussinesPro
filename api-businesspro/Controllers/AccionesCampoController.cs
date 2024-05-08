@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using API.Models;
+using Microsoft.Data.Sqlite;
 
 namespace api_businesspro.Controllers
 {
@@ -22,23 +23,27 @@ namespace api_businesspro.Controllers
 
         // GET: api/AccionesCampo
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<CrearAccionesCampoRequest>>> GetAccionesCampo()
+        public async Task<ActionResult<IEnumerable<CrearAccionesCampoRequest>>> GetAccionesCampo(
+            [FromQuery] int page,
+            [FromQuery] int size
+        )
         {
-            return await _context.AccionesCampo.ToListAsync();
+            var list = await _context.CrearAccionesCampoRequest.ToListAsync();
+            return list.Skip(page * size).Take(size).ToList();
         }
 
         // GET: api/AccionesCampo/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<CrearAccionesCampoRequest>> GetCrearAccionesCampoRequest(long id)
+        public ActionResult<CrearAccionesCampoRequest> GetCrearAccionesCampoRequest(long id)
         {
-            var crearAccionesCampoRequest = await _context.AccionesCampo.FindAsync(id);
-
-            if (crearAccionesCampoRequest == null)
-            {
+            if (!CrearAccionesCampoRequestExists(id))
                 return NotFound();
-            }
 
-            return crearAccionesCampoRequest;
+            return _context.CrearAccionesCampoRequest
+                    .Where(a => a.Id == id)
+                    .Include(a => a.Detalles)
+                    .Include(a => a.Series)
+                    .Single();
         }
 
         // PUT: api/AccionesCampo/5
@@ -47,11 +52,15 @@ namespace api_businesspro.Controllers
         public async Task<IActionResult> PutCrearAccionesCampoRequest(long id, CrearAccionesCampoRequest crearAccionesCampoRequest)
         {
             if (id != crearAccionesCampoRequest.Id)
-            {
-                return BadRequest();
-            }
+                return BadRequest("The url id is not equal to the object id");
 
-            _context.Entry(crearAccionesCampoRequest).State = EntityState.Modified;
+            if (crearAccionesCampoRequest.Detalles.Any(p => p.Id == 0))
+                return BadRequest("One or more items in List<Detalles> has no valid id");
+
+            if (crearAccionesCampoRequest.Series.Any(o => o.Id == 0))
+                return BadRequest("One or more items in List<Series> has no valid id");
+
+            _context.Update(crearAccionesCampoRequest);
 
             try
             {
@@ -77,7 +86,7 @@ namespace api_businesspro.Controllers
         [HttpPost]
         public async Task<ActionResult<CrearAccionesCampoRequest>> PostCrearAccionesCampoRequest(CrearAccionesCampoRequest crearAccionesCampoRequest)
         {
-            _context.AccionesCampo.Add(crearAccionesCampoRequest);
+            _context.CrearAccionesCampoRequest.Add(crearAccionesCampoRequest);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction(nameof(PostCrearAccionesCampoRequest), new { id = crearAccionesCampoRequest.Id }, crearAccionesCampoRequest);
@@ -87,13 +96,11 @@ namespace api_businesspro.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCrearAccionesCampoRequest(long id)
         {
-            var crearAccionesCampoRequest = await _context.AccionesCampo.FindAsync(id);
+            var crearAccionesCampoRequest = await _context.CrearAccionesCampoRequest.FindAsync(id);
             if (crearAccionesCampoRequest == null)
-            {
                 return NotFound();
-            }
 
-            _context.AccionesCampo.Remove(crearAccionesCampoRequest);
+            _context.CrearAccionesCampoRequest.Remove(crearAccionesCampoRequest);
             await _context.SaveChangesAsync();
 
             return NoContent();
@@ -101,7 +108,7 @@ namespace api_businesspro.Controllers
 
         private bool CrearAccionesCampoRequestExists(long id)
         {
-            return _context.AccionesCampo.Any(e => e.Id == id);
+            return _context.CrearAccionesCampoRequest.Any(e => e.Id == id);
         }
     }
 }
