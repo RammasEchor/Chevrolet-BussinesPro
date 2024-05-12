@@ -1,5 +1,5 @@
 using API.Models;
-using API;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,7 +9,7 @@ builder.Services.AddControllers().AddNewtonsoftJson(options =>
 {
     options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
 });
-var connectionString = builder.Configuration.GetConnectionString(AppConfig.dbPath);
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddSqlite<ApiContext>(connectionString);
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -22,7 +22,7 @@ builder.Services.AddSwaggerGenNewtonsoftSupport();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+// if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();

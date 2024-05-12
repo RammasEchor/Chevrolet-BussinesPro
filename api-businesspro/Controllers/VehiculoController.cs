@@ -34,7 +34,7 @@ namespace api_businesspro.Controllers
 
         // GET: api/Vehiculo/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<CrearVehiculoRequest>> GetCrearVehiculoRequest(long id)
+        public ActionResult<CrearVehiculoRequest> GetCrearVehiculoRequest(long id)
         {
             if (!CrearVehiculoRequestExists(id))
                 return NotFound();

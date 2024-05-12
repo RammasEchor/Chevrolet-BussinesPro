@@ -23,6 +23,9 @@
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary",
                 "/property:PublishSingleFile=true",
+                "/property:PublishRelease=true",
+                "/property:IncludeAllContentForSelfExtract=true",
+                "/property:IncludeNativeLibrariesForSelfExtract=true",
                 "--self-contained",
                 "true",
                 "--runtime",
@@ -31,7 +34,8 @@
             "problemMatcher": "$msCompile",
             "options": {
                 "env": {
-                    "DOTNET_CLI_ENABLE_PUBLISH_RELEASE_FOR_SOLUTIONS": "true"
+                    "DOTNET_CLI_ENABLE_PUBLISH_RELEASE_FOR_SOLUTIONS": "true",
+                    "CLASS_LIB_RELEASE_MODE": "true"
                 }
             }
         },
@@ -53,8 +57,7 @@
             "problemMatcher": "$msCompile",
             "options": {
                 "env": {
-                    "DOTNET_CLI_ENABLE_PUBLISH_RELEASE_FOR_SOLUTIONS": "true",
-                    "CLASS_LIB_RELEASE_MODE": "true"
+                    "DOTNET_CLI_ENABLE_PUBLISH_RELEASE_FOR_SOLUTIONS": "true"
                 }
             }
         },
@@ -93,6 +96,18 @@
                 "/consoleloggerparameters:NoSummary;ForceNoAlign"
             ],
             "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "deploy-win32",
+            "type": "shell",
+            "command": "./create_deployment_win.sh",
+            "options": {
+                "cwd": "${workspaceFolder}/deployment-scripts/"
+            },
+            "problemMatcher": "$msCompile",
+            "dependsOn": [
+                "publish-win32"
+            ]
         },
     ]
 }
