@@ -8,7 +8,7 @@ class Program
 {
     static void Main()
     {
-        Trace.Listeners.Add(new TextWriterTraceListener("interface-api-BusinessPro.log", "traceListener"));
+        Trace.Listeners.Add(new TextWriterTraceListener("interface-api-businessPro.log", "traceListener"));
 
         Directory.CreateDirectory($"{AppConfig.TopDir}");
         Directory.CreateDirectory($"{AppConfig.TopDir}/{AppConfig.NewRegistersDir}");

@@ -74,18 +74,6 @@
             "problemMatcher": "$msCompile"
         },
         {
-            "label": "deploy-win32",
-            "type": "shell",
-            "command": "./create_deployment_win.sh",
-            "options": {
-                "cwd": "${workspaceFolder}/interface-deployment-scripts/"
-            },
-            "problemMatcher": "$msCompile",
-            "dependsOn": [
-                "publish-win32"
-            ]
-        },
-        {
             "label": "publish",
             "command": "dotnet",
             "type": "process",

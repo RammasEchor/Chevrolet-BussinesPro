@@ -11,7 +11,7 @@ public static class AppConfig
         {
             if (string.IsNullOrEmpty(_topDir))
             {
-                Trace.WriteLine("WATCHER_TOP_DIRECTORY is not set.");
+                Trace.WriteLine("Watcher top directory (API_INTERFACE_DIR) is not set.");
                 Trace.Flush();
                 Environment.Exit(1);
             }
@@ -28,7 +28,7 @@ public static class AppConfig
             if (string.IsNullOrEmpty(_baseUrl))
             {
                 {
-                    Trace.WriteLine("CAR_BASE_URL is not set.");
+                    Trace.WriteLine("BUSINESS_PRO_BASE_URL is not set.");
                     Trace.Flush();
                     Environment.Exit(1);
                 }

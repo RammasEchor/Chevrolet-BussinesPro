@@ -1,12 +1,13 @@
-setlocal
-mkdir %API_INTERFACE_DIR%
-mkdir "%API_INTERFACE_DIR%\temp"
-mkdir "%API_INTERFACE_DIR%\progress-scripts"
-cd /d %~dp0
-powershell -command "Expand-Archive -Force 'deployment.zip' '%API_INTERFACE_DIR%\temp'"
-xcopy /y "%API_INTERFACE_DIR%\temp\interface-api-businesspro.exe" "%API_INTERFACE_DIR%\interface-api-businesspro.exe"
-xcopy /y /s "%API_INTERFACE_DIR%\temp\progress-scripts\*" "%API_INTERFACE_DIR%\progress-scripts\*"
-xcopy /y "%API_INTERFACE_DIR%\temp\*.bat" "%API_INTERFACE_DIR%\*.bat"
-del "%API_INTERFACE_DIR%\temp" /q/s
-del "%cd%\deployment.zip" /q
+set currentDir=%~dp0%
+call %currentDir%service_names.bat
+call %currentDir%stop.bat
+mkdir "%currentDir%temp"
+xcopy /y "%currentDir%service_names.bat" "%currentDir%temp\service_names.bat"
+xcopy /y "%currentDir%env_variables.bat" "%currentDir%temp\env_variables.bat"
+xcopy /y "%currentDir%appsettings.json" "%currentDir%temp\appsettings.json"
+powershell -command "Expand-Archive -Path '%currentDir%deployment.zip' -DestinationPath '%currentDir%' -Force"
+xcopy /y "%currentDir%temp\service_names.bat" "%currentDir%service_names.bat"
+xcopy /y "%currentDir%temp\env_variables.bat" "%currentDir%env_variables.bat"
+xcopy /y "%currentDir%temp\appsettings.json" "%currentDir%appsettings.json"
+call %currentDir%restart.bat
 PAUSE

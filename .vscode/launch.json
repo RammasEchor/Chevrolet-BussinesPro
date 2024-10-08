@@ -10,12 +10,11 @@
             "request": "launch",
             "preLaunchTask": "build",
             // If you have changed target frameworks, make sure to update the program path.
-            "program": "${workspaceFolder}/interface-api-businesspro/bin/Debug/net7.0/interface-api-businesspro.dll",
-            "args": [
-                "/home/rammas/repos/Chevrolet_DMS_Watcher/test_folder/NoProcesados/EmpresaCrear.txt",
-                "/home/rammas/repos/Chevrolet_DMS_Watcher/test_folder/Procesados",
-                "/home/rammas/repos/Chevrolet_DMS_Watcher/test_folder/Erroneos"
-            ],
+            "program": "${workspaceFolder}/interface-api-businesspro/bin/Debug/net8.0/interface-api-businesspro.dll",
+            "env": {
+                "API_INTERFACE_DIR": "Tests/",
+                "BUSINESS_PRO_BASE_URL": "localhost.com"
+            },
             "cwd": "${workspaceFolder}/interface-api-businesspro",
             // For more information about the 'console' field, see https://aka.ms/VSCode-CS-LaunchJson-Console
             "console": "integratedTerminal",
